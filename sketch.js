@@ -8,6 +8,9 @@ var button;
 var story_clicks = 0;
 var sample_mean;
 var sample_stdev;
+var keyprop_button;
+var Q1Ans;
+var Submit;
 
 // Set seed
 var seedval = 123456;
@@ -21,7 +24,7 @@ function setup() {
   // Title page
   createElement("h1", "Continuous Random Variable");
   UnifHeading = select("h1");
-  UnifHeading.position(750,0);
+  UnifHeading.position(760,0);
   //UnifHeading.style("padding", "12px");
 
 
@@ -31,9 +34,9 @@ function setup() {
   // Uniform Distribution Description
 
   // First paragraph
-  DescPara1 = createElement("p","The Uniform distribution on the left can used to draw a random number \
+  DescPara1 = createElement("p","The Uniform distribution on the left can be used to draw a random number \
   from 0 to 100. The uniform distribution in this case is denoted by U[0,100]. \
-  This is a continuous distribution because the range of draws is infinite.");
+  This is a continuous distribution because the range of possible draws is infinite.");
 
   DescPara1.position(610,50);
 
@@ -202,13 +205,49 @@ function UnifKeyProp(){
   if (story_clicks == 0){
 
     // Move button down
-    keyprop_button.position(610,400);
+    keyprop_button.position(610,440);
     keyprop_button.html("Click to continue");
+    keyprop_button.attribute('disabled', '');
 
     // Explain key property
     DescPara3 = createElement("p", "Example: The probability (indicated by blue area) of generating a number between [10,20] and \
-    [90,100] is both 10%.")
+    [90,100] is both 10% (or probability of 0.10).")
     DescPara3.position(610, 280);
+
+    // Ask question
+    var Question1 = createElement("p", "What is the probability of drawing a point from [30,50]?");
+    Question1.position(610,360);
+    Q1Ans = createInput();
+    Q1Ans.position(1160,385);
+    Q1Ans.size(50,20);
+
+    // Submit button
+    Submit = createButton("Submit Answer")
+    Submit.position(1240,382);
+    Submit.size(60,30);
+    Submit.mousePressed(checkAnswer);
+
+      // Check answer that is submitted
+      function checkAnswer(){
+
+        // Enable continue button if answer correctly
+        if (Q1Ans.value() == 0.2 || Q1Ans.value().substring(0,2) == 20){
+
+          // Hide submit
+          Submit.hide();
+
+          // Correct message
+          var CorrectMsg = createP("Correct Answer!");
+          CorrectMsg.position(1230,358);
+          CorrectMsg.style('color','blue');
+
+          // Enable button
+          keyprop_button.removeAttribute('disabled');
+        }
+        else{
+          Submit.html("Try Again");
+        }
+    }
 
     // Move onto next step
     story_clicks += 1;
@@ -217,11 +256,11 @@ function UnifKeyProp(){
 
     // Draw samples
     DescPara4 = createElement("p", "Let us draw five data points from U[0,100]. Click button below to draw a point.")
-    DescPara4.position(610, 360);
+    DescPara4.position(610, 410);
 
 
     // Move button down
-    keyprop_button.position(610,450);
+    keyprop_button.position(610,480);
     keyprop_button.html("Draw a point");
 
     story_clicks += 1;
@@ -241,16 +280,21 @@ function UnifKeyProp(){
   }
   else if (story_clicks == 7){
 
+    // Remove only paragraph and replace with new one
+    DescPara4.remove();
     DescPara5 = createElement("p", "Now let us draw 35 more random points together. Only need to click once.")
     DescPara5.position(610, 410);
 
     // Move button down
-    keyprop_button.position(610,500);
+    keyprop_button.position(610,540);
     keyprop_button.html("Draw 35 points at once");
 
     story_clicks += 1;
   }
   else if (story_clicks == 8){
+
+    // Remove old text
+    DescPara5.remove();
 
     // Draw many uniform Points
     for (var draws = 0; draws <= 35; draws += 1){
@@ -264,10 +308,10 @@ function UnifKeyProp(){
     // text
     DescPara6 = createElement("p","Now we have a sample of n = 40 data points that are drawn from the U[0,100] population distribution. \
     Here are some key points to take away:")
-    DescPara6.position(610, 460);
+    DescPara6.position(610, 410);
 
     // Move button down
-    keyprop_button.position(610,560);
+    keyprop_button.position(610,580);
     keyprop_button.html("List key points");
 
     story_clicks += 1;
@@ -276,13 +320,13 @@ function UnifKeyProp(){
   else if (story_clicks == 9){
 
     // text
-    DescPara7 = createElement("p","1) The sample is roughly evenly spread accross [0,100]")
-    DescPara7.position(610, 530);
-    DescPara8 = createElement("p", "2) Sample mean and the sample standard deviation are close to the corresponding theortical values of U[0,100]");
-    DescPara8.position(610, 560);
+    DescPara7 = createElement("p","1) The sample is roughly evenly spread accross [0,100].")
+    DescPara7.position(610, 490);
+    DescPara8 = createElement("p", "2) Sample mean and the sample standard deviation are close to the corresponding population mean and standard deviation values of U[0,100].");
+    DescPara8.position(610, 530);
 
     // Move button down
-    keyprop_button.position(610,670);
+    keyprop_button.position(610,640);
     keyprop_button.html("Continue to conclusion");
 
     story_clicks += 1;
@@ -294,11 +338,11 @@ function UnifKeyProp(){
 
     // text
     DescPara9 = createElement("p","We expect large random samples to be representative of the population.")
-    DescPara9.position(610, 635);
+    DescPara9.position(610, 610);
 
     // Move button down
     keyprop_button.position(610,700);
-    keyprop_button.html("The End");
+    keyprop_button.remove();
 
 
   }

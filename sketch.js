@@ -19,7 +19,7 @@ function setup() {
   randomSeed(seedval);
 
   // Title page
-  createElement("h1", "Example of Continuous Random Variable");
+  createElement("h1", "Continuous Random Variable");
   UnifHeading = select("h1");
   UnifHeading.position(730,0);
   //UnifHeading.style("padding", "12px");
@@ -50,7 +50,7 @@ function setup() {
 
   // Illustrate uniform property
   keyprop_button = createButton('Illustrate key property');
-  keyprop_button.size(150,30);
+  keyprop_button.size(150,60);
   keyprop_button.position(610,300);
   keyprop_button.mousePressed(UnifKeyProp);
 

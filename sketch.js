@@ -21,7 +21,7 @@ function setup() {
   // Title page
   createElement("h1", "Continuous Random Variable");
   UnifHeading = select("h1");
-  UnifHeading.position(730,0);
+  UnifHeading.position(750,0);
   //UnifHeading.style("padding", "12px");
 
 
@@ -39,18 +39,18 @@ function setup() {
 
   DescPara2 = createElement("p", "The mean of U[0,100] is 50 and the standard deviation is 29.")
 
-  DescPara2.position(610,150);
+  DescPara2.position(610,160);
 
 
   DescPara3 = createElement("p", "The key property of the uniform distribution is that the probability \
   of drawing a number from any equal size interval is the same.")
 
-  DescPara3.position(610,200);
+  DescPara3.position(610,205);
 
 
   // Illustrate uniform property
   keyprop_button = createButton('Illustrate key property');
-  keyprop_button.size(150,60);
+  keyprop_button.size(150,40);
   keyprop_button.position(610,300);
   keyprop_button.mousePressed(UnifKeyProp);
 

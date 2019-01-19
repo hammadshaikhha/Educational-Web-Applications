@@ -6,7 +6,7 @@ var width = 170,
 
 var bottomY = height - 5,
     topY = 5,
-    bulbRadius = 30,
+    bulbRadius = 35,
     tubeWidth = 35,
     tubeBorderWidth = 1.25,
     mercuryColor = "rgb(230,0,0)",
@@ -125,7 +125,7 @@ var scale = d3.scale.linear()
 
 
 // Max and min temperature lines
-[minTemp, maxTemp].forEach(function(t) {
+[maxTemp].forEach(function(t) {
 
   var isMax = (t == maxTemp),
       label = (isMax ? "Target" : ""),
@@ -183,7 +183,7 @@ var tickValues = d3.range((domain[1] - domain[0])/step + 1).map(function(v) { re
 // D3 axis object for the temperature scale
 var axis = d3.svg.axis()
   .scale(scale)
-  .innerTickSize(7)
+  .innerTickSize(10)
   .outerTickSize(0)
   .tickValues(tickValues)
   .orient("left");
@@ -209,3 +209,12 @@ svgAxis.selectAll(".tick line")
   .style("stroke", tubeBorderColor)
   .style("shape-rendering", "crispEdges")
   .style("stroke-width", "1px");
+
+// Add text with c8urrent rate
+svg.append("text")
+    .attr("x", 0.38*width)
+    .attr("y", height - bulbRadius*0.85)
+    .text(currentTemp + "%")
+    .style("font-size", "24px")
+    .style("font-weight", "bold");
+    ;

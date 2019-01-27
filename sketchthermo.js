@@ -1,14 +1,102 @@
-var width = 170,
-    height = 375,
+var itter = 1;
+var n_submits = 1;
+var database;
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB7i216JRtznwYdX90NIfpgRvPh0YpGeBY",
+    authDomain: "firsttutorialproject.firebaseapp.com",
+    databaseURL: "https://firsttutorialproject.firebaseio.com",
+    projectId: "firsttutorialproject",
+    storageBucket: "firsttutorialproject.appspot.com",
+    messagingSenderId: "966587241050"
+};
+
+firebase.initializeApp(config);
+database = firebase.database();
+
+// Refresh thermometer every few seconds
+var intervalID = setInterval(function(){
+
+// Get API key
+var ref = database.ref("APIKey");
+ref.on("value", gotAll);
+
+function gotAll(data) {
+var get_key = data.val();
+//console.log(get_key);
+
+
+// function gotAll(data) {
+//var scores = data.val();
+//var key = Object.keys(scores);
+//var first_key = key[0]
+//var get_score = scores[first_key].score;
+//console.log(get_score);
+//}
+
+
+// Make API call to canvas
+function getThumbnail(vurl,callback) {
+            data = $.getJSON("https://cors.io/?https://q.utoronto.ca/"+vurl,function(returndata){
+            callback(returndata);
+        });
+
+        return data;
+    }
+
+
+//quiz_url = 'api/v1/courses/79858/quizzes/29457/statistics?access_token=11834~ffTbmSr046OyaN6uSn0lBpiPFoghMBmQSt0UiHRayraAVyCEQaEwQmkj21uW9GKx'
+// quiz_url = 'api/v1/courses/79858/quizzes/30128/statistics?access_token=11834~ffTbmSr046OyaN6uSn0lBpiPFoghMBmQSt0UiHRayraAVyCEQaEwQmkj21uW9GKx'
+
+quiz_url = 'api/v1/courses/79858/quizzes/30128/statistics?access_token=' + get_key
+
+getThumbnail(quiz_url,function(returndata){
+        //received data!
+        ParseQuizStat = returndata;
+        n_submits = ParseQuizStat["quiz_statistics"][0]["submission_statistics"]["unique_count"];
+        //n_submits = n_submits + 1;
+        currentTemp = Math.round((n_submits/196)*100);
+        console.log(n_submits);
+
+
+// API for acessing instructor read messages
+// '/api/v1/courses/79858/analytics/users/209541/communication?access_token=11834~ffTbmSr046OyaN6uSn0lBpiPFoghMBmQSt0UiHRayraAVyCEQaEwQmkj21uW9GKx'
+// data_json = JSON.parse(data["responseText"])
+// data_json = JSON.parse(data["responseText"])
+//console.log(QuizStat)
+
+
+//QuizStat
+
+//function doAdelay(){
+//    setTimeout(function(){return true;},5000);
+//};
+
+//doAdelay();
+
+
+
+
+// Remove previous thermometer
+d3.select("svg").remove();
+
+
+// Math.round(currentTemp)
+
+// Unique submission_stat/count in canvas API contains completion data
+
+var width = 250,
+    height = 450,
     maxTemp = 85.0,
-    minTemp = 0.0,
-    currentTemp = 51;
+    minTemp = 0.0;
+    //currentTemp = 51 + itter;
 
 var bottomY = height - 5,
     topY = 5,
-    bulbRadius = 35,
-    tubeWidth = 35,
-    tubeBorderWidth = 1.25,
+    bulbRadius = 40,
+    tubeWidth = 40,
+    tubeBorderWidth = 1,
     mercuryColor = "rgb(230,0,0)",
     innerBulbColor = "rgb(230, 200, 200)",
     tubeBorderColor = "#999999";
@@ -135,7 +223,7 @@ var scale = d3.scale.linear()
   svg.append("line")
     .attr("id", label + "Line")
     .attr("x1", width/2 - tubeWidth/2)
-    .attr("x2", width/2 + tubeWidth/2 + 220)
+    .attr("x2", width/2 + tubeWidth/2+75)
     .attr("y1", scale(t))
     .attr("y2", scale(t))
     .style("stroke", tubeBorderColor)
@@ -210,11 +298,40 @@ svgAxis.selectAll(".tick line")
   .style("shape-rendering", "crispEdges")
   .style("stroke-width", "1px");
 
-// Add text with c8urrent rate
-svg.append("text")
-    .attr("x", 0.38*width)
-    .attr("y", height - bulbRadius*0.85)
-    .text(currentTemp + "%")
-    .style("font-size", "24px")
-    .style("font-weight", "bold");
-    ;
+  // Add text with current rate
+  if (currentTemp % 2 == 0) {
+  	svg.append("text")
+      .attr("x", 0.42*width)
+      .attr("y", height - bulbRadius*0.85)
+      .text(currentTemp + "%")
+      .style("font-size", "24px")
+      .style("font-weight", "bold")
+  	.style("fill", "blue");
+  }
+  else {
+  	svg.append("text")
+      .attr("x", 0.42*width)
+      .attr("y", height - bulbRadius*0.85)
+      .text(currentTemp + "%")
+      .style("font-size", "24px")
+      .style("font-weight", "bold")
+  	.style("fill", "black");
+  }
+
+
+
+// Increment counter
+itter += 1
+
+if (currentTemp >= 50) {
+    clearInterval(intervalID);
+}
+
+
+})
+
+// firebase end
+}
+
+
+}, 3000);

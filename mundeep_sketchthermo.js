@@ -23,7 +23,7 @@ getThumbnail(quiz_url,function(returndata){
         ParseQuizStat = returndata;
         n_submits = ParseQuizStat["entities"]["user"]["mphul"]["points"];
         //n_submits = n_submits + 1;
-        currentTemp = n_submits + itter;
+        currentTemp = n_submits;
         //console.log(n_submits);
 
 

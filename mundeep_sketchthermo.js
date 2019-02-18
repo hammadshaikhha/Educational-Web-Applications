@@ -185,7 +185,7 @@ var scale = d3.scale.linear()
 
   var isMax = (t == maxTemp),
 
-        label = (isMax ? "Target" : ""),
+        label = (isMax ? "Target (Feb 22)" : ""),
         textCol = (isMax ? "rgb(230, 0, 0)" : "rgb(0, 0, 230)"),
         textOffset = (isMax ? -4 : 4);
 

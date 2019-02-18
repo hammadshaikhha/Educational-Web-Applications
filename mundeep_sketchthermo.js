@@ -1,6 +1,6 @@
 var itter = 1;
 var n_submits = 1;
-var interval_wait = 3000;
+var interval_wait = 1500;
 
 // Refresh thermometer every few seconds
 var intervalID = setInterval(function(){

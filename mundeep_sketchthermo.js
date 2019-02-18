@@ -43,7 +43,7 @@ d3.select("svg").remove();
 
 // Unique submission_stat/count in canvas API contains completion data
 
-var width = 250,
+var width = 290,
     height = 450,
     maxTemp = 160.0, // set target here maxTemp
     minTemp = 0.0;

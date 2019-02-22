@@ -271,7 +271,7 @@ svgAxis.selectAll(".tick line")
   // Change color when odd or even
   if (currentTemp % 2 == 0) {
   	svg.append("text")
-      .attr("x", 0.42*width)
+      .attr("x", 0.44*width)
       .attr("y", height - bulbRadius*0.85)
       .text(currentTemp)
       .style("font-size", "24px")
@@ -280,7 +280,7 @@ svgAxis.selectAll(".tick line")
   }
   else {
   	svg.append("text")
-      .attr("x", 0.42*width)
+      .attr("x", 0.44*width)
       .attr("y", height - bulbRadius*0.85)
       .text(currentTemp)
       .style("font-size", "24px")

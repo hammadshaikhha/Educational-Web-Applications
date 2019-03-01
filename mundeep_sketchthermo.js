@@ -46,7 +46,7 @@ d3.select("svg").remove();
 var width = 330,
     height = 450,
     maxTemp = 230.0, // set target here maxTemp
-    minTemp = 0.0;
+    minTemp = 160;
     //currentTemp = 51 + itter;
 
 if (currentTemp < maxTemp) {
@@ -181,11 +181,11 @@ var scale = d3.scale.linear()
 
 
 // Max and min temperature lines
-[maxTemp].forEach(function(t) {
+[maxTemp, minTemp].forEach(function(t) {
 
   var isMax = (t == maxTemp),
 
-        label = (isMax ? "Target (March 1)" : ""),
+        label = (isMax ? "Target (March 1)" : "Target (Feb 15)"),
         textCol = (isMax ? "rgb(230, 0, 0)" : "rgb(0, 0, 230)"),
         textOffset = (isMax ? -4 : 4);
 

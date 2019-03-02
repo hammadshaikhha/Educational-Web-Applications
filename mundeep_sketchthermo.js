@@ -185,9 +185,10 @@ var scale = d3.scale.linear()
 [maxTemp, maxTemp2, minTemp].forEach(function(t) {
 
   var isMax = (t == maxTemp),
+      isMed = (t == maxTemp2)
 
-        label = (isMax ? "Target (March 8)" : "Target (March 1)" : "Target (Feb 15)"),
-        textCol = (isMax ? "rgb(230, 0, 0)" : "rgb(0, 0, 230)"),
+        label = (isMax ? "Target (March 8)" : isMed ? "Target (March 1)" : "Target (Feb 15)"),
+        textCol = (isMax ? "rgb(230, 0, 0)" : isMed ? "rgb(0, 230, 0)" : "rgb(0, 0, 230)"),
         textOffset = (isMax ? -4 : 4);
 
   svg.append("line")

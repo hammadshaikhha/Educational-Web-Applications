@@ -45,7 +45,8 @@ d3.select("svg").remove();
 
 var width = 330,
     height = 450,
-    maxTemp = 230.0, // set target here maxTemp
+    maxTemp2 = 230
+    maxTemp = 300, // set target here maxTemp
     minTemp = 160;
     //currentTemp = 51 + itter;
 
@@ -159,7 +160,7 @@ svg.append("rect")
 var step = 20;
 
 // Range of thermometer
-var domain = [0, 300]
+var domain = [0, 340]
 
 // Determine a suitable range of the temperature scale
 /*var domain = [
@@ -181,11 +182,11 @@ var scale = d3.scale.linear()
 
 
 // Max and min temperature lines
-[maxTemp, minTemp].forEach(function(t) {
+[maxTemp, maxTemp2, minTemp].forEach(function(t) {
 
   var isMax = (t == maxTemp),
 
-        label = (isMax ? "Target (March 1)" : "Target (Feb 15)"),
+        label = (isMax ? "Target (March 8)" : "Target (March 1)" : "Target (Feb 15)"),
         textCol = (isMax ? "rgb(230, 0, 0)" : "rgb(0, 0, 230)"),
         textOffset = (isMax ? -4 : 4);
 

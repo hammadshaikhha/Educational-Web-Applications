@@ -45,7 +45,7 @@ d3.select("svg").remove();
 
 var width = 330,
     height = 450,
-    maxTemp2 = 230
+    maxTemp2 = 230,
     maxTemp = 300, // set target here maxTemp
     minTemp = 160;
     //currentTemp = 51 + itter;

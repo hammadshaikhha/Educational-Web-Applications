@@ -46,7 +46,7 @@ d3.select("svg").remove();
 var width = 330,
     height = 450,
     maxTemp2 = 230,
-    maxTemp = 300, // set target here maxTemp
+    maxTemp = 360, // set target here maxTemp
     minTemp = 160;
     //currentTemp = 51 + itter;
 
@@ -160,7 +160,7 @@ svg.append("rect")
 var step = 20;
 
 // Range of thermometer
-var domain = [0, 340]
+var domain = [0, 380]
 
 // Determine a suitable range of the temperature scale
 /*var domain = [

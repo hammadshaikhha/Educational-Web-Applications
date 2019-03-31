@@ -51,6 +51,10 @@ var width = 340,
     minTemp = 160;
     //currentTemp = 51 + itter;
 
+// Questions to complete until target
+var gap = maxTemp - currentTemp;
+document.getElementById("gap").innerHTML = "Excercises until target: " + gap;
+
 if (currentTemp < maxTemp) {
   var bottomY = height - 5,
       topY = 5,

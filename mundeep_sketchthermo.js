@@ -47,7 +47,7 @@ var width = 340,
     height = 450,
     JStemp = 296,
     maxTemp2 = 230,
-    maxTemp = 360, // set target here maxTemp
+    maxTemp = 370, // set target here maxTemp
     minTemp = 160;
     //currentTemp = 51 + itter;
 
@@ -192,7 +192,7 @@ var scale = d3.scale.linear()
   var isMax = (t == maxTemp),
       isMed = (t == maxTemp2)
 
-        label = (isMax ? "Target (March 29)" : isMed ? "Target (March 1)" : "Target (Feb 15)"),
+        label = (isMax ? "Target (April 5)" : isMed ? "Target (March 1)" : "Target (Feb 15)"),
         textCol = (isMax ? "rgb(230, 0, 0)" : isMed ? "rgb(0, 230, 0)" : "rgb(0, 0, 230)"),
         textOffset = (isMax ? -4 : 4);
 
